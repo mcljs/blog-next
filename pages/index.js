@@ -7,6 +7,7 @@ import Amplify from 'aws-amplify';
 import config from '../aws-exports';
 import {Hero} from '../components/Hero'
 import {About} from '../components/About'
+import {Skills} from '../components/Skills'
 Amplify.configure(config);
 
 export default function Home() {
@@ -52,6 +53,7 @@ export default function Home() {
       />
       <Hero />
       <About />
+      <Skills />
     <section className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 grid-flow-row gap-8 my-10 ">
   {
         posts.map((post, index) => (

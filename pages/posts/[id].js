@@ -46,7 +46,7 @@ export default function Post({ post }) {
       <header className="py-16 px-6 sm:px-8">
         <h1 className="flex flex-col items-center">
           <span className="text-indigo-600 font-semibold tracking-wide uppercase">blog</span>
-          <span className="mt-2 text-6xl  font-extrabold tracking-tight text-gray-900 sm:text-4x1">{post.title}</span>
+          
         </h1>
         <hr className="mt-8 border-t-2 w-20 mx-auto" />
       </header>

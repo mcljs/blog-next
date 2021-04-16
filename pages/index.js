@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { API, Storage } from 'aws-amplify'
 import { listPosts } from '../graphql/queries'
 import Amplify from 'aws-amplify';
-import config from './aws-exports';
+import config from '../aws-exports';
 Amplify.configure(config);
 
 export default function Home() {

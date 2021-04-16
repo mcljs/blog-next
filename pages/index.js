@@ -5,6 +5,8 @@ import { API, Storage } from 'aws-amplify'
 import { listPosts } from '../graphql/queries'
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
+import {Hero} from '../components/Hero'
+import {About} from '../components/About'
 Amplify.configure(config);
 
 export default function Home() {
@@ -48,11 +50,8 @@ export default function Home() {
           site_name: 'Michael Chacón'
         }}
       />
-  <section className="my-10">
-        <h1 className="text-5xl uppercase font-hairline text-center text-gray-600 mb-2 font-serif">Otro blog de tecnología en español</h1>
-     
-      </section>
-
+      <Hero />
+      <About />
     <section className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 grid-flow-row gap-8 my-10 ">
   {
         posts.map((post, index) => (

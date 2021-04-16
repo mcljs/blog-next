@@ -1,6 +1,5 @@
 import '../styles/globals.css'
 import '../configureAmplify'
-
 import { useState, useEffect } from 'react'
 import { Auth, Hub } from 'aws-amplify'
 import Navbar from '../components/Navbar'

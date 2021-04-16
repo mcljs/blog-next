@@ -39,7 +39,7 @@ export default function Home() {
             'Un blog de tecnología y escritos',
           images: [
             {
-              url: 'https://my-trips.willianjusten.com.br/image.jpg',
+              url: 'https://mcljs.vercel.app/image.jpg',
               width: 1280,
               height: 720,
               alt: 'Michael Chacón'

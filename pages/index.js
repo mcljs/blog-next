@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 import { API, Storage } from 'aws-amplify'
 import { listPosts } from '../graphql/queries'
 import Amplify from 'aws-amplify';
@@ -26,7 +27,27 @@ export default function Home() {
     setPosts(postsWithImages)
   }
   return (
-    <div>
+    <>
+ <NextSeo
+   title="Michael Chacón"
+   description="Un blog de tecnología y escritos"
+        canonical="https://mcljs.vercel.app"
+        openGraph={{
+          url: 'https://mcljs.vercel.app',
+          title: 'Michael Chacón',
+          description:
+            'Un blog de tecnología y escritos',
+          images: [
+            {
+              url: 'https://my-trips.willianjusten.com.br/image.jpg',
+              width: 1280,
+              height: 720,
+              alt: 'Michael Chacón'
+            }
+          ],
+          site_name: 'Michael Chacón'
+        }}
+      />
   <section className="my-10">
         <h1 className="text-5xl uppercase font-hairline text-center text-gray-600 mb-2 font-serif">Otro blog de tecnología en español</h1>
      
@@ -62,6 +83,6 @@ export default function Home() {
         </Link>)
         )
       }*/}
-    </div>
+    </>
   )
 }

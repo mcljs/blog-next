@@ -1,8 +1,14 @@
+import { useState, useEffect } from 'react'
+import RouterLoadingIndicator from '../components/RouterLoadingIndicator'
 import '../styles/globals.css'
 import '../configureAmplify'
-import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import { Auth, Hub } from 'aws-amplify'
 import Navbar from '../components/Navbar'
+import {useRouter} from 'next/router'
+
+import { DefaultSeo } from 'next-seo'
+import SEO from '../next-seo.config'
 
 
 function MyApp({ Component, pageProps }) {
@@ -26,8 +32,53 @@ async function authListener() {
     setSignedInUser(true)
   } catch (err) {}
 }
+
+
+
+  const router = useRouter()
+
+  const [state, setState] = useState({
+    isRouteChanging: false,
+    loadingKey: 0,
+  })
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setState((prevState) => ({
+        ...prevState,
+        isRouteChanging: true,
+        loadingKey: prevState.loadingKey ^ 1,
+      }))
+    }
+
+    const handleRouteChangeEnd = () => {
+      setState((prevState) => ({
+        ...prevState,
+        isRouteChanging: false,
+      }))
+    }
+
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+    router.events.on('routeChangeComplete', handleRouteChangeEnd)
+    router.events.on('routeChangeError', handleRouteChangeEnd)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+      router.events.off('routeChangeComplete', handleRouteChangeEnd)
+      router.events.off('routeChangeError', handleRouteChangeEnd)
+    }
+  }, [router.events])
+
+
+
   return (
     <>
+ <Head>
+        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        </Head>
+ <RouterLoadingIndicator isRouteChanging={state.isRouteChanging} />
     <Navbar />
       <div>
 { /*
@@ -48,6 +99,7 @@ async function authListener() {
     </Link>
   )}
     </nav>*/}
+    <DefaultSeo {...SEO} />
     <div className="py-8 px-16">
       <Component {...pageProps} />
     </div>

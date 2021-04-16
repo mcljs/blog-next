@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
 import { listPosts, getPost } from '../../graphql/queries'
+import { NextSeo } from 'next-seo'
 
 export default function Post({ post }) {
   const [coverImage, setCoverImage] = useState(null)
@@ -21,16 +22,44 @@ export default function Post({ post }) {
     return <div>Loading...</div>
   }
   return (
-    <div>
-      <h1 className="text-5xl mt-4 font-semibold tracking-wide">{post.title}</h1>
+    <>
+<NextSeo
+        title={`${post.title} - Michael Chacón`}
+        canonical="https://mcljs.com"
+        openGraph={{
+          url: 'https://mcljs.com',
+          title: `${post.title} - Michael Chacón`,
+          description:
+            post.description?.text ||
+            'Un simple blog de tecnología y escritos',
+          images: [
+            {
+              url: post.coverImage,
+              width: post.coverImage,
+              height: post.coverImage,
+              alt: `${post.title}`
+            }
+          ]
+        }}
+      />
+    <article>
+      <header className="py-16 px-6 sm:px-8">
+        <h1 className="flex flex-col items-center">
+          <span className="text-indigo-600 font-semibold tracking-wide uppercase">blog</span>
+          <span className="mt-2 text-6xl  font-extrabold tracking-tight text-gray-900 sm:text-4x1">{post.title}</span>
+        </h1>
+        <hr className="mt-8 border-t-2 w-20 mx-auto" />
+      </header>
+
       {
         coverImage && <img src={coverImage} className="mt-4" />
       }
       <p className="text-sm font-light my-4">by {post.username}</p>
       <div className="mt-8">
-        <ReactMarkdown className='prose' children={post.content} />
+        <ReactMarkdown className='mt-8 mx-auto prose prose-indigo md:prose-lg lg:prose-xl' children={post.content} />
       </div>
-    </div>
+    </article>
+    </>
   )
 }
 

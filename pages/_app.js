@@ -100,7 +100,7 @@ async function authListener() {
   )}
     </nav>*/}
     <DefaultSeo {...SEO} />
-    <div className="py-8 px-16">
+    <div>
       <Component {...pageProps} />
     </div>
   </div>

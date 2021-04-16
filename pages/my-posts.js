@@ -25,7 +25,7 @@ export default function MyPosts() {
     fetchPosts()
   }
   return (
-    <div>
+    <div className="py-8 px-16">
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">My Posts</h1>
       {
         posts.map((post, index) => (

@@ -2,7 +2,7 @@ import React from "react";
 
 export const Skills = () => {
   return (
-    <section className="px-12 py-4">
+    <section className="px-12 py-4 bg-gray-50">
       <div className="w-2/4 ">
         <h5 className="text-3xl font-bold">Habilidades</h5>
       </div>
@@ -15,7 +15,7 @@ export const Skills = () => {
           >
            Epic React With Kent C Dodds 🚀
           </a>
-          <span> &amp; cursos en la plataforma de</span>
+          <span> &amp; cursos en la plataforma de </span>
           <a
             href="https://egghead.io/"
             target="__blank"

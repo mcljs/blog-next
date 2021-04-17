@@ -2,7 +2,7 @@ import React from "react";
 
 export const About = () => {
   return (
-    <section className="px-12 py-4">
+    <section className="px-12 py-4 bg-gray-50">
       <div className=" w-2/4 ">
         <h5 className="text-3xl font-bold">Acerca de mi</h5>
       </div>

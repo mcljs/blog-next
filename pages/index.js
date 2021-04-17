@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { API, Storage } from 'aws-amplify'
-import { listPosts } from '../graphql/queries'
+import { listPosts ,Post} from '../graphql/queries'
 import Amplify from 'aws-amplify';
 import config from '../aws-exports';
 import {Hero} from '../components/Hero'
@@ -11,9 +11,16 @@ import {Skills} from '../components/Skills'
 Amplify.configure(config);
 
 export default function Home() {
+
+
   const [posts, setPosts] = useState([])
   useEffect(() => {
     fetchPosts()
+  }, [])
+
+  const [uniPosts, setUniPosts] = useState([])
+  useEffect(() => {
+    fetchPost()
   }, [])
   async function fetchPosts() {
     const postData = await API.graphql({
@@ -29,6 +36,25 @@ export default function Home() {
     }))
     setPosts(postsWithImages)
   }
+
+  async function fetchPost() {
+    const postData = await API.graphql({
+      query: Post
+    })
+    const { items } = postData.data.listPosts
+    // Fetch images from S3 for posts that contain a cover image
+    const postsWithImages = await Promise.all(items.map(async post => {
+      if (post.coverImage) {
+        post.coverImage = await Storage.get(post.coverImage)
+      }
+      return post
+    }))
+    setUniPosts(postsWithImages)
+  }
+
+
+
+
   return (
     <>
  <NextSeo
@@ -54,19 +80,70 @@ export default function Home() {
       <Hero />
       <About />
       <Skills />
-    <section className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 grid-flow-row gap-8 my-10 ">
+      <section className="px-12 py-4 ">
+      <div className="w-2/4 ">
+        <h5 className="text-3xl font-bold">Mis Articulos</h5>
+      </div>
+      <div className="grid  grid-cols-1 md:grid-cols-2  py-12">
+        <p className="w-full">
+        Eche un vistazo a algunos de mis articulos referentes al desarrollo web actual
+        </p>
+      </div>
+      {
+        uniPosts.map((post,index)=>(
+          <div className="grid  grid-cols-1 md:grid-cols-2 py-12 col-gap-24 row-gap-12" key={index}>
+             {
+              post.coverImage && <img imgStyle={{ objectFit: "cover" }} src={post.coverImage}    className="rounded" />
+            }
+            <div>
+            <div class="w-24 h-2 bg-yellow-800 mb-4"></div>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
+                  {post.title}
+                </h2>
+                <p className="text-lg text-gray-500 py-4">
+                  {post.description}
+                </p>
+                <button className="inline-block border-2 border-yellow-800  text-yellow-800 text-sm uppercase tracking-widest py-3 px-8 hover:bg-yellow-800 hover:text-white">
+                  <Link href={`/posts/${post.id}`}>
+                    Leer Articulo
+                  </Link>
+                </button>
+              </div>
+            </div>
+        ))
+      }
+      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 pt-12 pb-24" >
+         
   {
         posts.map((post, index) => (
+      <div key={index}>
+         {
+              post.coverImage && <img imgStyle={{ objectFit: "cover" }} src={post.coverImage}    className="w-full h-52 md:h-64 lg:h-96 xl:h-64 object-cover" />
+            }
+            <div className="bg-gray-50 p-8">
+            <div className="text-xs text-gray-600 uppercase font-semibold">{post.username}</div>
+            <h2 className="mt-3 text-3xl mb-6 font-display text-black leading-tight max-w-sm">
+                  {post.title}
+                </h2>
+                <p className="mt-4 max-w-md">
+                        {post.title}
+                    </p>
+                    <a href={`/posts/${post.id}`} className="flex items-center mt-6 uppercase text-sm text-black font-semibold">
+                    Read article
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+        </div>
+        </div>
+        
+        
 
-      <article className="col-auto border-yellow-900 border-opacity-40  border-4 p-5" key={index}>
-            <p className="text-xs font-hairline font-sans text-gray-500 uppercase mt-5 tracking-widest">15.04.21</p>
-            <h2 className="text-xl font-hairline text-gray-600 font-serif mb-5"><Link href={`/posts/${post.id}`}>{post.title}</Link></h2>
-            <p className="text-base font-light font-sans text-gray-700">
-              {post.username}
-            </p>
-                     </article>        )
+
+
+                     )
         )
       }
+      </div>
+
       </section>
       {/*  <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-8">Posts</h1>
       {

@@ -7,19 +7,19 @@ import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import { createPost } from '../graphql/mutations'
 
-const initialState = { title: '', content: '' }
+const initialState = { title: '', content: '',description: '' }
 
 function CreatePost() {
   const [post, setPost] = useState(initialState)
   const [image, setImage] = useState(null)
   const hiddenFileInput = useRef(null);
-  const { title, content } = post
+  const { title,description ,content } = post
   const router = useRouter()
   function onChange(e) {
     setPost(() => ({ ...post, [e.target.name]: e.target.value }))
   }
   async function createNewPost() {
-    if (!title || !content) return
+    if (!title || !content && !description) return
     const id = uuid() 
     post.id = id
     // If there is an image uploaded, store it in S3 and add it to the post metadata
@@ -54,6 +54,14 @@ function CreatePost() {
         value={post.title}
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
       /> 
+ <input
+        onChange={onChange}
+        name="description"
+        placeholder="Description"
+        value={post.description}
+        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+      /> 
+
       {
         image && (
           <img src={URL.createObjectURL(image)} className="my-4" />

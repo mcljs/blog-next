@@ -9,6 +9,7 @@ import {useRouter} from 'next/router'
 
 import { DefaultSeo } from 'next-seo'
 import SEO from '../next-seo.config'
+import { Footer } from '../components/Footer'
 
 
 function MyApp({ Component, pageProps }) {
@@ -104,6 +105,7 @@ async function authListener() {
       <Component {...pageProps} />
     </div>
   </div>
+  <Footer />
     </>
   )
 }

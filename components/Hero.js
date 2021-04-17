@@ -4,7 +4,7 @@ export const Hero = () => {
 
 
   return (
-        <div className=" p-12  grid grid-cols-1 md:grid-cols-2 items-center">
+        <div className=" p-12  grid grid-cols-1 md:grid-cols-2 items-center bg-gray-50">
           <div>
             <h1 className=" text-4xl font-bold ">
               Hola, soy Michael. Frontend Development. Bienvenido a otro blog de tecnologias y escritos.

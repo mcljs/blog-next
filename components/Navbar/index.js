@@ -57,13 +57,16 @@ async function authListener() {
 
 
   <Link href="/" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
-        Home
+        Inicio
+      </Link>
+      <Link href="/about" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
+        Sobre Mi
       </Link>
       <Link href="/create-post" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
        Create Post
       </Link>
       <Link href="/profile" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
-        Profile
+        Perfil
       </Link>
 {
   signedInUser && (
@@ -88,9 +91,9 @@ async function authListener() {
     </div>
         
     <div className="flex items-center justify-center">
-        <a href="/" className="text-white uppercase font-bold text-2xl tracking-widest">
-          Michael Chacon
-        </a>
+        <Link href="/" >
+          <a className="text-white uppercase font-bold text-2xl tracking-widest">Michael Chacon</a>
+        </Link>
      
 
     </div>
@@ -98,14 +101,14 @@ async function authListener() {
     <div class="flex items-center justify-end">
        
 
-    <a href="/contact">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-        </a>
+    <Link href="/contact">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+        </Link>
 
     </div>
 </div>
 
-<div class="w-full h-24 bg-yellow-900 bg-opacity-95 absolute top-0 left-0"></div>   
+<div className="w-full h-24 bg-yellow-900 bg-opacity-95 absolute top-0 left-0"></div>   
   </>
   );
 }

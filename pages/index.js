@@ -58,7 +58,8 @@ export default function Home() {
   return (
     <>
  <NextSeo
-   title="Michael Chacón"
+   title="Home"
+   titleTemplate={'%s | Michael Chacón'}
    description="Un blog de tecnología y escritos"
         canonical="https://mcljs.vercel.app"
         openGraph={{

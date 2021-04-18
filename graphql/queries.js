@@ -36,24 +36,6 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-
-export const Post = `
-query MyQuery {
-  listPosts(limit: 1) {
-    items {
-      id
-      title
-      description
-      username
-      content
-      coverImage
-      createdAt
-    }
-  }
-}
-
-`
-
 export const postsByUsername = /* GraphQL */ `
   query PostsByUsername(
     $username: String
@@ -80,6 +62,36 @@ export const postsByUsername = /* GraphQL */ `
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+export const searchPosts = /* GraphQL */ `
+  query SearchPosts(
+    $filter: SearchablePostFilterInput
+    $sort: SearchablePostSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchPosts(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        title
+        description
+        content
+        username
+        coverImage
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
     }
   }
 `;

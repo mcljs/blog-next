@@ -65,3 +65,19 @@ export const postsByUsername = /* GraphQL */ `
     }
   }
 `;
+
+export const Post = `
+query MyQuery {
+  listPosts(limit: 1) {
+    items {
+      id
+      title
+      description
+      username
+      content
+      coverImage
+      createdAt
+    }
+  }
+}
+`

@@ -43,9 +43,9 @@ export default function Post({ post }) {
         }}
       />
     <article>
-      <header className="py-16 px-6 sm:px-8">
+      <header className="py-10 px-6 sm:px-8">
 
-        <h1 className="max-w-screen-md mx-auto sm:px-0 px-5 leading-tight mt-24 mb-4 sm:text-4xl text-3xl font-bold text-center">{post.title}</h1>
+        <h1 className="text-gray-800 max-w-screen-md mx-auto sm:px-0 px-5 leading-tight mt-24 mb-4 sm:text-5xl text-3xl font-bold text-center">{post.title}</h1>
         <h2 className="text-sm text-center opacity-75 mb-10">by {post.username} </h2>
         <hr className="mt-8 border-t-2 w-20 mx-auto" />
       </header>

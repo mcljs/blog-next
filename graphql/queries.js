@@ -68,7 +68,7 @@ export const postsByUsername = /* GraphQL */ `
 
 export const Post = `
 query MyQuery {
-  listPosts(limit: 1) {
+  listPosts(limit: 4) {
     items {
       id
       title

@@ -8,6 +8,7 @@ import config from '../aws-exports';
 import {Hero} from '../components/Hero'
 import {About} from '../components/About'
 import {Skills} from '../components/Skills'
+import Image from 'next/image'
 Amplify.configure(config);
 
 export default function Home() {
@@ -90,29 +91,45 @@ export default function Home() {
         Eche un vistazo a algunos de mis articulos referentes al desarrollo web actual
         </p>
       </div>
+ <div className="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8" >
       {
         uniPosts.map((post,index)=>(
-          <div className="grid  grid-cols-1 md:grid-cols-2 py-12 col-gap-24 row-gap-12" key={index}>
+         
+            <div className="flex flex-col" key={index}>
+              <div className="md:mb-4 mb-2">
+            <Link href={`/posts/${post.id}`}>
+                    <a>
              {
-              post.coverImage && <img imgStyle={{ objectFit: "cover" }} src={post.coverImage}    className="rounded" />
+              post.coverImage && 
+                <img  
+                  src={post.coverImage}
+                  alt={post.coverImage} 
+                  width={1280}
+                  height={720}
+                  quality={100}  
+                  className="rounded-lg" />
             }
-            <div>
-            <div class="w-24 h-2 bg-yellow-800 mb-4"></div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
-                  {post.title}
+         </a>
+                  </Link>
+              </div>
+           
+                   <Link href={`/posts/${post.id}`}>
+                <a>
+                  <h2 className="md:text-3xl text-xl font-bold leading-tighter">
+                    {post.title}
                 </h2>
-                <p className="text-lg text-gray-500 py-4">
+             </a>
+              </Link>
+                <p className="prose sm:prose prose-sm  sm:mt-4 mt-2 text-gray-700 ">
                   {post.description}
                 </p>
-                <button className="inline-block border-2 border-yellow-800  text-yellow-800 text-sm uppercase tracking-widest py-3 px-8 hover:bg-yellow-800 hover:text-white">
-                  <Link href={`/posts/${post.id}`}>
-                    Leer Articulo
-                  </Link>
-                </button>
-              </div>
-            </div>
+              
+            
+                </div>
+           
         ))
       }
+ </div>
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 pt-12 pb-24" >
          
   {

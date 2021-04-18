@@ -1,4 +1,4 @@
-type Post @model @searchable
+type Post @model
   @key(name: "postsByUsername", fields: ["username"], queryField: "postsByUsername")
   @auth(rules: [
     { allow: owner, ownerField: "username" },

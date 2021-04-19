@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import { createPost } from '../graphql/mutations'
+import { NextSeo } from 'next-seo'
 
 const initialState = { title: '', content: '',description: '' }
 
@@ -45,23 +46,43 @@ function CreatePost() {
     setImage(fileUploaded)
   }
   return (
-    <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6">Create new post</h1>
+    <div className="px-12 py-4"> 
+     <NextSeo
+   title="Crear Post"
+   titleTemplate={'%s | Michael Chacón'}
+   description="Un blog de tecnología y escritos"
+        canonical="https://mcljs.vercel.app"
+        openGraph={{
+          url: 'https://mcljs.vercel.app',
+          title: 'Michael Chacón',
+          description:
+            'Un blog de tecnología y escritos',
+          images: [
+            {
+              url: 'https://mcljs.vercel.app/image.jpg',
+              width: 1280,
+              height: 720,
+              alt: 'Michael Chacón'
+            }
+          ],
+          site_name: 'Michael Chacón'
+        }}
+      />
+      <h1 className="text-3xl font-semibold tracking-wide mt-6">Crear nuevo post</h1>
       <input
         onChange={onChange}
         name="title"
-        placeholder="Title"
+        placeholder="Titulo"
         value={post.title}
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
       /> 
  <input
         onChange={onChange}
         name="description"
-        placeholder="Description"
+        placeholder="Descripción"
         value={post.description}
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
       /> 
-
       {
         image && (
           <img src={URL.createObjectURL(image)} className="my-4" />
@@ -78,13 +99,13 @@ function CreatePost() {
         className="bg-purple-600 text-white font-semibold px-8 py-2 rounded-lg mr-2" 
         onClick={uploadImage}        
       >
-        Upload Cover Image
+        Subir una imagen
       </button>
       <button
         type="button"
         className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"
         onClick={createNewPost}
-      >Create Post</button>
+      >Crear Post</button>
     </div>
   )
 }

@@ -39,7 +39,7 @@ export default function About() {
              sean versos o poemas.
             </p>
             <p className="py-4">
-              Comence a escribir codigo con el lenguaje de R cuando comenze en la universidad. Al comienzo
+              Comence a escribir codigo con el lenguaje de R cuando ingrese en la universidad. Al comienzo
               de la pandemia en el mundo quise aventurarme en aprender desarrollo web y a dedicar hacer sitios
               y aplicaciones web.
             </p>

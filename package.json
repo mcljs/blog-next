@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^1.0.6",
+    "@headlessui/react": "^1.0.0",
     "@tailwindcss/jit": "^0.1.18",
     "@tailwindcss/typography": "^0.4.0",
     "@tanem/react-nprogress": "^3.0.62",

@@ -3,16 +3,16 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-1",
-    "aws_appsync_graphqlEndpoint": "https://is76vq65prh6jkgr7oobw5tvou.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://7f47q4lqs5ekfckgk2xhtwr3v4.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-xz2yds5utvcsffejaye5azog6i",
-    "aws_cognito_identity_pool_id": "us-east-1:e6ebaaee-ab57-4b8c-8f02-b5a7b042531d",
+    "aws_appsync_apiKey": "da2-zoepdmyihbdllffjcr5lvbunlm",
+    "aws_cognito_identity_pool_id": "us-east-1:c9c6388d-c964-420c-821d-cb24b13a6f4f",
     "aws_cognito_region": "us-east-1",
-    "aws_user_pools_id": "us-east-1_yXGtP7O36",
-    "aws_user_pools_web_client_id": "6e22e4t2484ltrcreanasvce2t",
+    "aws_user_pools_id": "us-east-1_k4gihkEOw",
+    "aws_user_pools_web_client_id": "2f7h0uf35vgd8i20shk2fht2in",
     "oauth": {},
-    "aws_user_files_s3_bucket": "mcljs231604-dev",
+    "aws_user_files_s3_bucket": "amplifynext36dd3edca4f643e3b4a0ba4b1340b0cf122031-dev",
     "aws_user_files_s3_bucket_region": "us-east-1"
 };
 

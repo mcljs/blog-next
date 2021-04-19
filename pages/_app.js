@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { Auth, Hub } from 'aws-amplify'
 import Navbar from '../components/Navbar'
 import {useRouter} from 'next/router'
-
+import Analytics from '../components/Analytics'
 import { DefaultSeo } from 'next-seo'
 import SEO from '../next-seo.config'
 import { Footer } from '../components/Footer'
@@ -101,6 +101,7 @@ async function authListener() {
     </Link>
   )}
     </nav>*/}
+    <Analytics />
     <DefaultSeo {...SEO} />
     <div>
       <Component {...pageProps} />

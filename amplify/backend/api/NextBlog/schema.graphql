@@ -6,7 +6,7 @@ type Post @model
   ]) {
   id: ID!
   title: String!
-  description: String
+  description: String!
   content: String!
   username: String
   coverImage: String

@@ -52,7 +52,7 @@ async function authListener() {
                <div  className="fixed inset-0 w-full h-full bg-white z-50 text-yellow-900">
             <div className="container h-full mx-auto px-6 py-8 relative z-10 flex flex-col items-center justify-center text-2xl uppercase font-bold tracking-widest space-y-6">
                 <button className="absolute top-0 left-0 mt-8 ml-6">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </button>
 
 
@@ -62,19 +62,22 @@ async function authListener() {
       <Link href="/about" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
         Sobre Mi
       </Link>
-      <Link href="/create-post" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
-       Create Post
+    
+{
+  signedInUser && (
+    <>
+  <Link href="/create-post" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
+       Crear Post
       </Link>
+    <Link href="/my-posts" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
+     Mi Posts
+    </Link>
+    </>
+  )}
       <Link href="/profile" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
         Perfil
       </Link>
-{
-  signedInUser && (
-    <Link href="/my-posts" className="inline-block border-b-4 border-transparent hover:border-yellow-900">
-     My Posts
-    </Link>
-  )}
-                          </div>
+                     </div>
             <div className="absolute inset-0 w-full h-full bg-yellow-900 bg-opacity-20"></div>
         </div>   
    :
@@ -82,7 +85,7 @@ async function authListener() {
 
      <button  >
 
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
            
 
                  
@@ -101,8 +104,10 @@ async function authListener() {
     <div class="flex items-center justify-end">
        
 
-    <Link href="/contact">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+    <Link href="https://michael-chacon.vercel.app/">
+      <a>
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+      </a>
         </Link>
 
     </div>

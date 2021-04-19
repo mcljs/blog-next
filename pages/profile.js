@@ -1,132 +1,25 @@
-import '../configureAmplify'
-import { useEffect, useState } from 'react'
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify'
-import SignIn from '../components/Auth/SignIn'
-import SignUp from '../components/Auth/SignUp'
-import Profile from '../components/Auth/Profile'
-import ForgotPassword from '../components/Auth/ForgotPassword'
-import ForgotPasswordSubmit from '../components/Auth/ForgotPasswordSubmit'
-import ConfirmSignUp from '../components/Auth/ConfirmSignUp'
+import { useState, useEffect } from 'react'
 
-function App() {
-  const [uiState, setUiState] = useState(null)
-  const [formState, setFormState] = useState({
-    email: '', password: '', authCode: ''
-  })
-  const { email, password, authCode } = formState
+function Profile() {
+  const [user, setUser] = useState(null)
   useEffect(() => {
     checkUser()
   }, [])
   async function checkUser() {
-    console.log('checking user...')
-    try {
-      setUiState('loading')
-      await Auth.currentAuthenticatedUser()
-      setUiState('signedIn')
-    } catch(err) {
-      setUiState('signIn')
-    }
+    const user = await Auth.currentAuthenticatedUser()
+    setUser(user)
   }
-  function onChange(e) {
-    setFormState({ ...formState, [e.target.name]: e.target.value })
-  }
-  async function signUp() {
-    try {
-      await Auth.signUp({ username: email, password, attributes: { email }})
-      setUiState('confirmSignUp')
-    } catch (err) { console.log({ err })}
-  }
-  async function confirmSignUp() {
-    try {
-      await await Auth.confirmSignUp(email, authCode)
-      await Auth.signIn(email, password)
-      setUiState('signedIn')
-    } catch (err) { console.log({ err })}
-
-  }
-  async function signIn() {
-    try {
-      await Auth.signIn(email, password)
-      setUiState('signedIn')
-    } catch (err) { console.log({ err })}
-  }
-  async function forgotPassword() {
-    try {
-      await Auth.forgotPassword(email)
-      setUiState('forgotPasswordSubmit')
-    } catch (err) { console.log({ err}) }
-  }
-  async function forgotPasswordSubmit() {
-    await Auth.forgotPasswordSubmit(email, authCode, password)
-    setUiState('signIn')
-  }
+  if (!user) return null
   return (
-    <div className="bg-gray-50 min-h-screen">
-        <div className="flex flex-col items-center">
-          <div className="max-w-full sm:w-540 mt-14">
-           
-            <div className="bg-white py-14 px-16 shadow-form rounded">
-              {
-                !uiState || uiState === 'loading' && <p className="font-bold">Loading ...</p>
-              }
-              {
-                uiState === 'signedIn' && (
-                  <Profile
-                    setUiState={setUiState}
-                    onChange={onChange}
-                  />
-                )
-              }
-              {
-                uiState === 'signUp' && (
-                  <SignUp
-                    setUiState={setUiState}
-                    onChange={onChange}
-                    signUp={signUp}
-                  />
-                )
-              }
-              {
-                uiState === 'confirmSignUp' && (
-                  <ConfirmSignUp
-                    setUiState={setUiState}
-                    onChange={onChange}
-                    confirmSignUp={confirmSignUp}
-                  />
-                )
-              }
-              {
-                uiState === 'signIn' && (
-                  <SignIn
-                    setUiState={setUiState}
-                    onChange={onChange}
-                    signIn={signIn}
-                  />
-                )
-              }
-              {
-                uiState === 'forgotPassword' && (
-                  <ForgotPassword 
-                    setUiState={setUiState}
-                    onChange={onChange}
-                    forgotPassword={forgotPassword}
-                  />
-                )
-              }
-              {
-                uiState === 'forgotPasswordSubmit' && (
-                  <ForgotPasswordSubmit
-                    setUiState={setUiState}
-                    onChange={onChange}
-                    forgotPasswordSubmit={forgotPasswordSubmit}
-                  />
-                )
-              }
-            </div>
-          </div>
-        </div>
+    <div className="py-8 px-16">
+      <h1 className="text-3xl font-semibold tracking-wide mt-6">Perfil</h1>
+      <h3 className="font-medium text-gray-500 my-2">Username: {user.username}</h3>
+      <p className="text-sm text-gray-500 mb-6">Email: {user.attributes.email}</p>
+      <AmplifySignOut />
     </div>
-  );
+  )
 }
 
-export default App;
+export default withAuthenticator(Profile)

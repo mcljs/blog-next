@@ -65,16 +65,23 @@ function EditPost() {
     router.push('/my-posts')
   }
   return (
-    <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">Edit post</h1>
+    <div div className="px-12 py-4">
+      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">Editar post</h1>
       {
         coverImage && <img src={localImage ? localImage : coverImage} className="mt-4" />
       }
       <input
         onChange={onChange}
         name="title"
-        placeholder="Title"
+        placeholder="Titulo"
         value={post.title}
+        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+      />
+     <input
+        onChange={onChange}
+        name="description"
+        placeholder="Descripción"
+        value={post.description}
         className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
       /> 
       <SimpleMDE value={post.content} onChange={value => setPost({ ...post, content: value })} />
@@ -88,7 +95,7 @@ function EditPost() {
         className="bg-purple-600 text-white font-semibold px-8 py-2 rounded-lg mr-2" 
         onClick={uploadImage}        
       >
-        Upload Cover Image
+        Subir Imagen
       </button>
       <button
         className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"

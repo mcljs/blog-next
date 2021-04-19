@@ -42,7 +42,7 @@ export default function Post({ post }) {
           ]
         }}
       />
-    <article>
+    <article className="mb-32">
       <header className="py-10 px-6 sm:px-8">
 
         <h1 className="text-gray-800 max-w-screen-md mx-auto sm:px-0 px-5 leading-tight mt-24 mb-4 sm:text-5xl text-3xl font-bold text-center">{post.title}</h1>

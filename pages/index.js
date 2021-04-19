@@ -80,7 +80,7 @@ export default function Home() {
          
             <div className="flex flex-col" key={index}>
               <div className="md:mb-4 mb-2">
-            <Link href={`/posts/${post.slug}`}>
+            <Link href={`/posts/${post.id}`}>
                     <a>
              {
               post.coverImage && 
